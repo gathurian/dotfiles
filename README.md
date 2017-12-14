@@ -1,7 +1,7 @@
 # Impressions
-![Clean Desktop with visible bar](https://github.com/taneher/dotfiles/blob/master/screenshot_clean.png)
+![Clean Desktop with visible bar](https://github.com/taneher/dotfiles/blob/master/Images/screenshot_clean.png)
 
-![Busy with Dolphin, md-editor and two Terminals with vim](https://github.com/taneher/dotfiles/blob/master/screenshot.png)
+![Busy with Dolphin, md-editor and two Terminals with vim](https://github.com/taneher/dotfiles/blob/master/Images/screenshot.png)
 
 
 # Dependencies
@@ -30,6 +30,6 @@ sudo apt-get install i3 nitrogen i3lock compton numlockx j4-dmenu-desktop uxterm
 5. Copy the config file in yor home/.config/i3 directory
 6. Open the config file with your favourite text-editor (Which should be vim...)
 7. Set the variables at the toip
-8. In case there's not secondary monitor, scroll to line 244 and delete the second "bar" statement
+8. In case there's no secondary monitor, scroll to line 244 and delete the second "bar" statement
 9. Copy the "wallpaper.png" into your /home/Pictures directory (or change the $Folder variable in the .scripts/lockscreen.sh script)
-9a. The image is 1920x1080px. If your screen(s) have a different resolution, change the picture to a different picture with the correnct resolution or use e.g. GIMP to stretch it to the correct resolution.
+10. The image is 1920x1080px. If your screen(s) have a different resolution, change the picture to a different picture with the correnct resolution or use e.g. GIMP to stretch it to the correct resolution.
