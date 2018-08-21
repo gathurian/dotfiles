@@ -1,3 +1,7 @@
+#define _bgcolor	#2f343f
+
 UXTerm*renderFont: true
 UXTerm*faceName: DejaVu Sans Mono
 UXTerm*faceSize: 14
+UXTerm*background: _bgcolor
+UXTerm*foreground: white

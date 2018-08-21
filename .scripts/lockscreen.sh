@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-$Folder = ~/Pictures
+
 # Enable compton's fade-in effect so that the lockscreen gets a nice fade-in
 # effect.
 #dbus-send --print-reply --dest=com.github.chjj.compton.${DISPLAY/:/_} / \
@@ -13,7 +13,7 @@ $Folder = ~/Pictures
 
 # Suspend dunst and lock, then resume dunst when unlocked.
 pkill -u $USER -USR1 dunst
-i3lock -n -i $Folder/wallpaper.png \
+i3lock -n -i /mnt/DATA/Bilder/yen_witcher.png \
     --insidecolor=373445ff --ringcolor=ffffffff --line-uses-inside \
     --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000 \
     --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff \

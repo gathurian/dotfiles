@@ -1,20 +1,20 @@
 #-----Variables------
 #Main-Display (Display can be listed with 'xrandr')
-set $maindisplay DP-5
+set $maindisplay DP-4
 #Secondary-Display (if present)
-set $secondarydisplay HDMI-0
+set $secondarydisplay DP-1
 #The terminal or terminal emulator you use (launched with $mod + Enter)
 set $terminal uxterm
 #Your browser (Launched with ctrl + 2)
 set $browser firefox
 #Your mailclient (Launched with ctrl + 3)
-set $mailclient thunderbird
+set $mailclient nylas-mail
 #Your musicplayer (Launched with ctrl + 4)
 set $musicplayer spotify
 #Your file explorer (Launched with ctrl + 1)
 set $fileexplorer dolphin
 #Your system-settings app (Launched with $mod + i)
-set $settings gnome-control-center
+set $settings systemsetttings5
 #Your program launcher (Launched with $mod+d)
 set $programlauncher j4-dmenu-desktop
 
@@ -37,12 +37,15 @@ set $mod Mod4
 gaps inner 10
 gaps outer 10
 
-#Loading the uxterm-settings
-exec xrdb -merge ~/.scripts/.Xresources
+smart_gaps on
 
-#starting nitrogen in the background to restore background
-exec --no-startup-id nitrogen --restore &
- 
+smart_borders on
+
+#Do some startup stuff like unfucking screen layout and such
+#exec  /home/alex/.scripts/startup.sh
+
+exec xrdb /home/.scripts/.Xresources
+
 #loading compton-config (mainly transparent terminal)
 exec compton --config ~/.config/compton.conf
   
@@ -51,7 +54,7 @@ exec_always --no-startup-id numlockx on
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 16
+font pango:FontAwesome 16
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -81,7 +84,7 @@ bindsym $mod+Shift+q kill
 bindsym Ctrl+2 exec jumpapp $browser
 
 #start file explorer
-bindsym Ctrl+1 exec jumpaipp $fileexplorer
+bindsym Ctrl+1 exec jumpapp $fileexplorer
 
 #start thunderbird
 bindsym Ctrl+3 exec jumpapp $mailclient
@@ -90,16 +93,16 @@ bindsym Ctrl+3 exec jumpapp $mailclient
 bindsym Ctrl+4 exec jumpapp $musicplayer
 
 #open settings
-bindsym $mod+i exec jumpapp gnome-control-center
+bindsym $mod+i exec jumpapp $settings
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec j4-dmenu-desktop
+#bindsym $mod+d exec "rofi -combi-modi window,drun -show combi -modi combi"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
+bindsym $mod+d exec --no-startup-id "rofi -show drun"
 #---------------Keyboard Shortcuts to change focus--------------
 
 # change focus
@@ -212,50 +215,52 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+
 #--------------------Audio-Control (Media-Keys)-----------------------
 
 # Pulse Audio controls
- bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
- bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
- bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
 
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-	output $maindisplay
-	status_command i3blocks -c '~/.scripts/i3blocks/i3blocks.conf'
-	mode hide
-	hidden_state hide
-	modifier mod4
-	position top
-	tray_output DP-5
-}
+#bar {
+#	output $maindisplay
+#	status_command i3blocks -c "/opt/dotfiles/.scripts/i3blocks/i3blocks.conf"
+#	mode hide
+#	hidden_state hide
+#	modifier mod4
+#	position top
+#	tray_output $maindisplay
+#}
 
 #If no secondary display is present, delete/uncomment this bar
 bar {
 	output $secondarydisplay
-	status_command i3blocks -c '~/.scripts/i3blocks/i3blocks_secondary.conf'
+	status_command i3blocks -c "/opt/dotfiles/.scripts/i3blocks/i3blocks_secondary.conf"
 	mode hide
 	hidden_state hide
 	modifier mod4
 	position top
-	tray_output HDMI-0
+	tray_output $secondarydisplay
 }
 
 #borderless windows
 new_window pixel 0
 
 #lock screen
-bindsym $mod+l exec "~/.scripts/lockscreen.sh"
+bindsym $mod+l exec "/opt/i3lock-multimonitor/lock"
 #autolock after 5min
 exec xautolock -time 5 -locker '~/.scripts/lockscreen.sh' &
 
