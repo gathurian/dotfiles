@@ -246,15 +246,15 @@ bindsym $mod+r mode "resize"
 #}
 
 #If no secondary display is present, delete/uncomment this bar
-bar {
-	output $secondarydisplay
-	status_command i3blocks -c "/opt/dotfiles/.scripts/i3blocks/i3blocks_secondary.conf"
-	mode hide
-	hidden_state hide
-	modifier mod4
-	position top
-	tray_output $secondarydisplay
-}
+#bar {
+#	output $secondarydisplay
+#	status_command i3blocks -c "/opt/dotfiles/.scripts/i3blocks/i3blocks_secondary.conf"
+#	mode hide
+#	hidden_state hide
+#	modifier mod4
+#	position top
+#	tray_output $secondarydisplay
+#}
 
 #borderless windows
 new_window pixel 0
@@ -262,5 +262,5 @@ new_window pixel 0
 #lock screen
 bindsym $mod+l exec "/opt/i3lock-multimonitor/lock"
 #autolock after 5min
-exec xautolock -time 5 -locker '~/.scripts/lockscreen.sh' &
+exec xautolock -time 5 -locker '/opt/i3lock-multimonitor/lock' &
 

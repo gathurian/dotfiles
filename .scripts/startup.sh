@@ -1,10 +1,6 @@
 #unfuck display layout
 xrandr --output DP-2.8 --mode 1920x1080 --pos 0x0 --rotate right --output DP-4 --mode 3440x1440 --pos 1080x208
 
-#mount OneDrive share
-#rclone mount Neher: /mnt/DATA/OneDriveNeher/ &
-#rclone mount Hotmail: /mnt/DATA/OneDrivePrivat/ &
-
 #set background
 nitrogen --restore
 
