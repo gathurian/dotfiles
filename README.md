@@ -1,8 +1,6 @@
 # Impressions
 ![Screenshot busy](Images/screenshot_dirty.png)
 
-![Screenshot clean](Images/screenshot_clean.png)
-
 # Dependencies
 - i3
 - [i3-gaps](https://github.com/Airblader/i3)
@@ -38,6 +36,7 @@ Should already be met with the various other dependencies
 
 # Installation / Usage
 * Download/Install all dependencies
+* Install the provided jumpapp-deb with ```sudo dpkg -i jumpapp_0.9-1_all.deb```
 * Copy the .scripts directory into your home-directory
 * Copy the compton.conf in your ~/.config directory
 * Copy the i3 directory in your ~/.config directory
@@ -45,4 +44,4 @@ Should already be met with the various other dependencies
 * Set a wallpaper using ```nitrogen /path/to/picture/folder```
 * Copy the ```lucariox.vim``` file into the ```/usr/share/vim/vim81/colors``` directory
 * Copy the .vimrc, .bashrc and .bash_aliases in your home-directory
-* Open the config file with your favourite text-editor and set the variables at the top
+* Open the config file with your favourite text-editor and set the variables at the top.
