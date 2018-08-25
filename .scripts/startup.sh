@@ -13,14 +13,9 @@ exec .config/polybar/launch.sh
 #start pulseaudio for audio
 pulseaudio -D
 
-#start conky
-conky -c /etc/conky/conkyrc
-
-#redraw conky
-/home/alex/.scripts/conky-redraw.sh &
-
 #unfuck terminal layout
-xrdb /home/alex/.scripts/.Xresources
+xrdb ~/.scripts/.Xresources
 
-
+#start compton for semi-transparent terminal
+compton --config ~/.config/compton.conf
 

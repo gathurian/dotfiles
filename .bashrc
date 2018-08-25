@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+#shows a rainbow-colored quote at the start of every terminal session
 fortune | cowsay | lolcat
 
 export XDG_CURRENT_DESKTOP=KDE
