@@ -19,7 +19,7 @@
 - [Polybar](https://github.com/jaagr/polybar)
 
 ## Install Dependencies (and dependencies of dependencies)
-###My Dependencies
+### My Dependencies
 ```
 sudo apt install i3 i3lock imagemagick nitrogen numlockx rofi fonts-font-awesome compton pulseaudio
 ```
