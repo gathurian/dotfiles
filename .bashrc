@@ -2,7 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#shows a rainbow-colored quote at the start of every terminal session
 fortune | cowsay | lolcat
 
 export XDG_CURRENT_DESKTOP=KDE
@@ -125,7 +124,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
+if [ -n "$DISPLAY" ]; then
+      xset b off
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

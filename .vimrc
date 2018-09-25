@@ -1,6 +1,13 @@
  " Set compatibility to Vim only.
 set nocompatible
 
+" Autoclose brackets
+inoremap {<CR> {<CR>}<ESC>O
+inoremap ( ()<++><left><left><left><left><left>
+inoremap { {}<++><left><left><left><left><left>
+inoremap [ []<++><left><left><left><left><left>
+inoremap " ""<++><left><left><left><left><left>
+
 "Always show current position
 set ruler
 
@@ -82,7 +89,7 @@ set statusline+=\                   " Padding
 set encoding=utf-8
 
 " Highlight matching search patterns
-set hlsearch
+" set hlsearch
 
 " Enable incremental search
 set incsearch
@@ -96,4 +103,38 @@ set smartcase
 " Store info from no more than 100 files at a time, 9999 lines of text
 " 100kb of data. Useful for copying large amounts of data between files.
 set viminfo='100,<9999,s100
+
+" Invokes vim-latex when .tex file is opened
+" filetype plugin on
+
+" Automatic indentation
+filetype indent on
+
+let g:tex_flavor = 'latex'
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats='pdf, aux'
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_complete_close_braces = 1
+set shellslash
+
+
+" Vim Plug, PluginManager (https://github.com/junegunn/vim-plug)
+" Either use full Github URLs or just the part after the 'github.com/'
+
+" Install plugins in the provided directory (dont use standard directories like 'plugin')
+call plug#begin('~/.vim/plugged')
+
+" Completor - Autocompletion
+Plug 'maralla/completor.vim'
+
+" VimTex - Help for LaTEX files
+ Plug 'lervag/vimtex'
+
+" A Vim Plugin for Lively Previewing LaTeX PDF Output
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
+" Initialize plugin system
+call plug#end()
+
+
 
