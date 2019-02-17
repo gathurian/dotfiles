@@ -1,7 +1,9 @@
 #define _bgcolor	#2f343f
 
-UXTerm*renderFont: true
-UXTerm*faceName: DejaVu Sans Mono
-UXTerm*faceSize: 14
-UXTerm*background: _bgcolor
-UXTerm*foreground: white
+URxvt*background: _     bgcolor
+URxvt*foreground:       white
+URxvt*font:             xft:Hack-Regular:pixelsize=16
+URxvt*boldFont:         xft:Hack-Bold:pixelsize=16
+URxvt.scrollBar:        false
+URxvt.internalBorder:   30
+URxvt.borderless:       tru
