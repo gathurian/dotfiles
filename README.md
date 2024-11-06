@@ -35,12 +35,12 @@ sudo apt install libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb
 Should already be met with the various other dependencies
 
 # Installation / Usage
-* Download/Install all dependencies
-* Install the provided jumpapp-deb with ```sudo dpkg -i jumpapp_0.9-1_all.deb```
-* Copy the .scripts directory into your home-directory
-* Copy the compton.conf in your ~/.config directory
-* Copy the i3 directory in your ~/.config directory
-* Copy the rofi directory in your ~/.config directory
+- Download/Install all dependencies
+- Install the provided jumpapp-deb with ```sudo dpkg -i jumpapp_0.9-1_all.deb```
+- Copy the .scripts directory into your home-directory
+- Copy the compton.conf in your ~/.config directory
++ Copy the i3 directory in your ~/.config directory
++ Copy the rofi directory in your ~/.config directory
 * Set a wallpaper using ```nitrogen /path/to/picture/folder```
 * Copy the ```lucariox.vim``` file into the ```/usr/share/vim/vim81/colors``` directory
 * Copy the .vimrc, .bashrc and .bash_aliases in your home-directory

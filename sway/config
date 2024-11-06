@@ -1,0 +1,218 @@
+#-----Variables------
+#Main-Display (Display can be listed with 'xrandr')
+set $maindisplay eDP-1
+#The terminal or terminal emulator you use (launched with $mod + Enter)
+set $terminal urxvt
+#Your browser (Launched with ctrl + 2)
+set $browser firefox
+#Your mailclient (Launched with ctrl + 3)
+set $mailclient thunderbird
+#Your musicplayer (Launched with ctrl + 4)
+set $musicplayer spotify
+#Your file explorer (Launched with ctrl + 1)
+set $fileexplorer cosmic-files
+#Your system-settings app (Launched with $mod + i)
+set $settings cosmic-settings
+#Your program launcher (Launched with $mod+d)
+set $programlauncher wofi
+#Your screenlocking command (Invoked with $mod+Escape)
+set $displaylock swaylock -f -e -k -l -i ~/Pictures/Wallpapers/eyohsf22z2551.jpg
+
+output * bg ~/Pictures/Wallpapers/48n6ub3l9me61.jpg fill
+
+exec /usr/bin/protonmail-bridge --no-window
+
+exec mako
+
+#-----------Startup--------------------------
+
+#Setting the Windows Key as Modifier
+set $mod Mod4
+
+#Gaps between the windows
+gaps inner 5
+gaps outer 5
+
+#only show gaps if there are more than one window in a workspace
+smart_gaps on
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:FontAwesome 16
+
+#-----------Default Keybindings------------------------------------------
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+#------Keyboard-shortcuts to launch programs--------
+
+#set keyboard layout
+#set numlock enabled
+input type:keyboard {
+    xkb_layout ch
+    xkb_variant de
+    xkb_numlock enabled
+}
+
+#set touchpad click to tapping (Left: 1 finger, Right: 2 finger, Middle: 3 finger)
+#set scrolling motion with two fingers
+input type:touchpad {
+    click_method clickfinger
+    tap enabled
+    tap_button_map lrm
+    scroll_method two_finger
+}
+
+# start a terminal
+bindsym $mod+Return exec $terminal
+
+#start browser
+bindsym Ctrl+2 exec jumpapp $browser
+
+#start file explorer
+bindsym Ctrl+1 exec jumpapp $fileexplorer
+
+#start mailclient
+bindsym Ctrl+3 exec jumpapp $mailclient
+
+#start musicplayer
+bindsym Ctrl+4 exec jumpapp $musicplayer
+
+#open settings
+bindsym $mod+i exec jumpapp $settings
+
+# start menu (a program launcher)
+#bindsym $mod+d exec "rofi  -show combi -modi combi"
+bindsym $mod+d exec $programlauncher
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#--------------Orientation for newly opened windows---------------
+
+# split in horizontal orientation
+bindsym $mod+comma split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#----------------Workspaces-------------------------
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2 
+bindsym $mod+3 workspace 3 
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6 
+bindsym $mod+7 workspace 7 
+bindsym $mod+8 workspace 8 
+bindsym $mod+9 workspace 9 
+bindsym $mod+0 workspace 10 
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1 
+bindsym $mod+Shift+2 move container to workspace 2 
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+#rexit i3 (logs you out of your X session)
+
+#--------------------Audio-Control (Media-Keys)-----------------------
+
+# Pulse Audio controls (find pulseaudio sink with 'pactl list sinks')
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 48 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 48 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 48 toggle # mute sound
+
+
+# Media player controls for spotify
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioPause exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+
+
+bar {
+  swaybar_command waybar
+}
+
+default_border pixel 3
+default_floating_border pixel 2
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #a69563 #a69563 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+bindsym $mod+Escape exec $displaylock
+
+#autolock after 5min
+exec swayidle -w timeout 300 '$displaylock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep '$displaylock'
+
+#dont autolock if fullscreen media is playing
+for_window [app_id="firefox"] inhibit_idle fullscreen
+
+# exit wayland session
+bindsym $mod+Shift+e exec swaynag -m 'confirm exit?' -b 'exit' 'swaymsg exit'

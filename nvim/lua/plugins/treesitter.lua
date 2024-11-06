@@ -22,7 +22,7 @@ return {
                 "markdown",
                 "markdown_inline",
                 "bash",
-                "latex",
+--                "latex",
             },
             incremental_selection = {
                 enable = true,
